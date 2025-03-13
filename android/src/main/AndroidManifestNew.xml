@@ -1,2 +1,24 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <uses-permission android:name="android.permission.INTERNET" />
+
+  <application
+    android:name=".SDKMainApplication"
+    android:allowBackup="false"
+    android:supportsRtl="true"
+    android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+    <activity
+      android:name=".SDKMainActivity"
+      android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+      android:exported="true"
+      android:launchMode="singleTask"
+      android:windowSoftInputMode="adjustResize"
+      android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+  </application>
+
 </manifest>
