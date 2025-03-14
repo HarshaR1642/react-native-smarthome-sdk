@@ -1,5 +1,5 @@
 buildscript {
-  ext.getExtOrDefault = {name ->
+  ext.getExtOrDefault = { name ->
     return rootProject.ext.has(name) ? rootProject.ext.get(name) : project.properties['SmarthomeSdk_' + name]
   }
 
@@ -48,6 +48,10 @@ android {
       main {
         manifest.srcFile "src/main/AndroidManifestNew.xml"
       }
+
+      getByName("main") {
+        jniLibs.srcDirs("libs")
+      }
     }
   }
 
@@ -92,11 +96,13 @@ def kotlin_version = getExtOrDefault("kotlinVersion")
 
 dependencies {
   implementation "com.facebook.react:react-android:0.78.0"
+  implementation fileTree(dir: "libs", include: ['*.aar', '*.jar'])
 
   // Hermes (optional)
   if (project.properties["hermesEnabled"] as Boolean) {
     implementation("com.facebook.react:hermes-android")
   } else {
     implementation("org.webkit:android-jsc:+")
-  }}
+  }
+}
 
