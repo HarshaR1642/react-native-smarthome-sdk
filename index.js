@@ -1,5 +1,4 @@
 import { AppRegistry } from 'react-native';
-import { App } from './src/App';
-// import { SmartHomeSDK } from 'smarthome-sdk';
+import App from './src/App';
 
 AppRegistry.registerComponent('SmartHomeSDK', () => App);

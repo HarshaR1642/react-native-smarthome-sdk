@@ -27,9 +27,9 @@
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
-    "release": "release-it",
     "postinstall": "rn-nodeify --install fs,util,path,tls,stream,buffer,global,process --hack && npx patch-package",
-    "bundle": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/src/main/assets/index.android.bundle --assets-dest android/src/main/res/"
+    "bundle": "react-native bundle --platform android --dev true --entry-file index.js --bundle-output android/src/main/assets/index.android.bundle --assets-dest android/src/main/res/",
+    "release": "cd android && ./gradlew assembleRelease"
   },
   "keywords": [
     "react-native",
@@ -50,7 +50,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "^2.1.2",
+    "@react-native-async-storage/async-storage": "^2.1.0",
     "@react-native-clipboard/clipboard": "^1.14.1",
     "@react-native-picker/picker": "^2.7.5",
     "asyncstorage-down": "^4.2.0",
@@ -59,8 +59,8 @@
     "patch-package": "^8.0.0",
     "path-browserify": "0.0.0",
     "process": "^0.11.0",
-    "react": "19.0.0",
-    "react-native": "0.78.0",
+    "react": "18.2.0",
+    "react-native": "0.74.4",
     "react-native-gesture-handler": "^2.21.2",
     "react-native-level-fs": "^3.0.0",
     "react-native-linear-gradient": "^2.8.3",
@@ -69,6 +69,7 @@
     "react-native-screens": "^4.4.0",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-svg": "^15.5.0",
+    "react-native-svg-transformer": "^1.5.0",
     "readable-stream": "1.0.33",
     "rn-nodeify": "^10.3.0",
     "smarthome-sdk": "git+https://github.com/Raajakishore20/smarthome-sdk#task/RB-8525",

@@ -4,3 +4,14 @@
 //  rootProject.name = 'SmartHomeSDK'
 //  include ':app'
 //  includeBuild('../node_modules/@react-native/gradle-plugin')
+
+include ':lottie-react-native'
+include ':react-native-async-storage'
+include ':react-native-picker'
+include ':react-native-screens'
+include ':react-native-clipboard'
+include ':react-native-gesture-handler'
+include ':react-native-reanimated'
+include ':react-native-safe-area-context'
+include ':react-native-svg'
+include ':react-native-linear-gradient'

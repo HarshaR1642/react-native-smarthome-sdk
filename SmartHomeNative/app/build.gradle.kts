@@ -46,8 +46,9 @@ android {
 }
 
 dependencies {
-    implementation("com.facebook.react:react-android:0.78.0")
-    implementation("com.facebook.react:hermes-android:0.78.0")
+    implementation("com.facebook.react:react-android:0.74.4")
+    implementation("com.facebook.react:hermes-android:0.74.4")
+    implementation("com.airbnb.android:lottie:6.4.0")
 
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.aar"))))
     implementation(libs.androidx.core.ktx)

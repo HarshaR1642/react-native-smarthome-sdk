@@ -9,6 +9,7 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+        mavenLocal()
     }
 }
 dependencyResolutionManagement {
@@ -17,6 +18,14 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         mavenLocal()
+      maven {
+        name = "smarthomesdk"
+        url = uri("https://maven.pkg.github.com/HarshaR1642/react-native-smarthome-sdk")
+        credentials {
+          username = "HarshaR1642"
+          password = "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"
+        }
+      }
     }
 }
 

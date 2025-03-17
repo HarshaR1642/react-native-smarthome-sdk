@@ -16,7 +16,7 @@ import com.th3rdwave.safeareacontext.SafeAreaContextPackage
 class CustomPackageList {
   fun getPackages(): List<ReactPackage> {
     return listOf(
-      MainReactPackage(),
+      MainReactPackage(null),
       AsyncStoragePackage(),
       ClipboardPackage(),
       RNCPickerPackage(),

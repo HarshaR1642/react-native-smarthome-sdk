@@ -49,9 +49,9 @@ android {
         manifest.srcFile "src/main/AndroidManifestNew.xml"
       }
 
-      getByName("main") {
-        jniLibs.srcDirs("libs")
-      }
+//      getByName("main") {
+//        jniLibs.srcDirs("libs")
+//      }
     }
   }
 
@@ -85,6 +85,13 @@ android {
   buildFeatures {
     buildConfig true
   }
+
+  publishing {
+    singleVariant("release") {
+      withJavadocJar()
+      withSourcesJar()
+    }
+  }
 }
 
 repositories {
@@ -95,8 +102,18 @@ repositories {
 def kotlin_version = getExtOrDefault("kotlinVersion")
 
 dependencies {
-  implementation "com.facebook.react:react-android:0.78.0"
-  implementation fileTree(dir: "libs", include: ['*.aar', '*.jar'])
+  implementation "com.facebook.react:react-android:0.74.4"
+  // implementation fileTree(dir: "libs", include: ['*.aar', '*.jar'])
+  api(project(":lottie-react-native"))
+  api(project(":react-native-async-storage"))
+  api(project(":react-native-picker"))
+  api(project(":react-native-screens"))
+  api(project(":react-native-clipboard"))
+  api(project(":react-native-gesture-handler"))
+  api(project(":react-native-safe-area-context"))
+  api(project(":react-native-svg"))
+  api(project(":react-native-linear-gradient"))
+  api(project(":react-native-reanimated"))
 
   // Hermes (optional)
   if (project.properties["hermesEnabled"] as Boolean) {
@@ -106,3 +123,4 @@ dependencies {
   }
 }
 
+apply from: "${projectDir}/maven.gradle"

@@ -1,56 +1,74 @@
-import { StyleSheet, View, TouchableOpacity, Text, Alert } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import React from 'react';
+import type { ReactNode } from 'react';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 
-const Button = ({
-  title,
-  style = {},
-  textStyle = {},
-  onPress,
-}: {
-  title: string;
-  style: any;
-  textStyle: any;
-  onPress: () => void;
-}) => {
+// @ts-ignore
+import { SmartHomeSDK } from 'smarthome-sdk';
+
+const getPropertyLevelTokenApi = async ({
+  propertyId,
+  clientId,
+  clientSecret,
+  setAccessToken,
+}: any) => {
+  const url = `https://smarthome.qe.rentlycore.com/api/properties/${propertyId}/token`;
+
+  const params = {
+    client_id: clientId,
+    client_secret: clientSecret,
+  };
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(params),
+    });
+
+    if (!response.ok) {
+      throw new Error();
+    }
+
+    const accessTokenData = await response.json();
+    return Promise.resolve(accessTokenData);
+  } catch (error: any) {
+    if (error) {
+      console.log('Error in fetching property token', error);
+      return Promise.reject(error);
+    }
+  }
+};
+
+const App: () => ReactNode = () => {
+  const clientId = 'ekhp0b6oJqoh_-h-Z2LC6iYktRKaNP-Zw01EnQLBrms';
+  const clientSecret = '12oJR9VJ82HKDPJ9fG5IsvPz3hmVl8jog6yOes6Lwsc';
+  const propertyId = 227997;
+
+  const getAccessToken = async () => {
+    return await getPropertyLevelTokenApi({
+      clientId,
+      clientSecret,
+      propertyId,
+    });
+  };
+
   return (
-    <TouchableOpacity style={style} onPress={onPress}>
-      <Text style={textStyle}>{title}</Text>
-    </TouchableOpacity>
+    <SafeAreaView style={{ flex: 1 }}>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <View style={{ flex: 1, backgroundColor: '#F3FAFF' }}>
+          <SmartHomeSDK
+            getAccessToken={getAccessToken}
+            propertyId={propertyId}
+          />
+        </View>
+      </GestureHandlerRootView>
+    </SafeAreaView>
   );
 };
 
-export const App = () => {
-  return (
-    <View style={styles.container}>
-      <Button
-        textStyle={styles.textStyle}
-        style={styles.button}
-        title="Smart Home SDK From RN"
-        onPress={() => {
-          Alert.alert('Smart Home SDK From RN');
-        }}
-      />
-    </View>
-  );
-};
+const styles = StyleSheet.create({});
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  button: {
-    backgroundColor: 'black',
-    width: 250,
-    height: 50,
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginVertical: 10,
-  },
-  textStyle: {
-    color: 'white',
-    fontSize: 18,
-    fontWeight: '500',
-  },
-});
+export default App;

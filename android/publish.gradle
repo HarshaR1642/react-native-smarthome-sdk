@@ -1,0 +1,29 @@
+apply plugin: 'maven-publish'
+
+afterEvaluate {
+    publishing {
+        publications {
+            bar(MavenPublication) {
+                groupId "com.smarthomesdk"
+                artifactId "smarthomesdk"
+                version "0.2.0"
+
+              artifact(tasks.bundleAars) {
+                builtBy tasks.bundleAars
+              }
+            }
+        }
+
+        repositories {
+            maven {
+                name "smarthomesdk"
+                url uri("https://maven.pkg.github.com/HarshaR1642/react-native-smarthome-sdk")
+                credentials {
+                    username = "HarshaR1642"
+                    password = "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"
+                }
+            }
+        }
+    }
+
+}
