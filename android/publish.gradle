@@ -4,11 +4,29 @@ afterEvaluate {
     publishing {
         publications {
             bar(MavenPublication) {
-                groupId "com.smarthomesdk"
-                artifactId "smarthomesdk"
-                version "0.1.0"
+              groupId "com.smarthomesdk"
+              artifactId "smarthomesdk"
+              version "0.4.0"
 
-                artifact("$buildDir/outputs/aar/android-release.aar")
+              artifact("$buildDir/outputs/aar/android-release.aar")
+
+              pom {
+                withXml {
+                  def dependenciesNode = asNode().appendNode('dependencies')
+
+                  def addDependency = { groupId, artifactId, version ->
+                    def dependencyNode = dependenciesNode.appendNode('dependency')
+                    dependencyNode.appendNode('groupId', groupId)
+                    dependencyNode.appendNode('artifactId', artifactId)
+                    dependencyNode.appendNode('version', version)
+                    dependencyNode.appendNode('scope', 'runtime')
+                  }
+
+                  addDependency("com.facebook.react", "react-android", "0.74.4")
+                  addDependency("com.facebook.react", "hermes-android", "0.74.4")
+                  addDependency("com.airbnb.android", "lottie", "6.4.0")
+                }
+              }
             }
         }
 
@@ -18,7 +36,7 @@ afterEvaluate {
                 url uri("https://maven.pkg.github.com/HarshaR1642/react-native-smarthome-sdk")
                 credentials {
                     username = "HarshaR1642"
-                    password = "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"
+                    password = ""
                 }
             }
         }

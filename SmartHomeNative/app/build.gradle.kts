@@ -18,12 +18,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    sourceSets {
-        getByName("main") {
-            jniLibs.srcDirs("libs")
-        }
-    }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -46,12 +40,8 @@ android {
 }
 
 dependencies {
-    implementation("com.facebook.react:react-android:0.74.4")
-    implementation("com.facebook.react:hermes-android:0.74.4")
-
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.aar"))))
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    // implementation("com.smarthomesdk.smarthomesdk:0.1.0")
+    implementation(libs.androidx.appcompat)
+    implementation(libs.smarthomesdk)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

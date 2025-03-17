@@ -107,11 +107,9 @@ repositories {
   google()
 }
 
-def kotlin_version = getExtOrDefault("kotlinVersion")
-
 dependencies {
   implementation "com.facebook.react:react-android:0.74.4"
-//   implementation fileTree(dir: "libs", include: ['*.aar', '*.jar'])
+
   embed(project(path: ":lottie-react-native", configuration: 'default'))
   embed(project(path: ":react-native-async-storage", configuration: 'default'))
   embed(project(path: ":react-native-picker", configuration: 'default'))
@@ -122,7 +120,6 @@ dependencies {
   embed(project(path: ":react-native-svg", configuration: 'default'))
   embed(project(path: ":react-native-linear-gradient", configuration: 'default'))
   embed(project(path: ":react-native-reanimated", configuration: 'default'))
-  embed "com.airbnb.android:lottie:6.4.0"
 
   if (project.properties["hermesEnabled"] as Boolean) {
     implementation("com.facebook.react:hermes-android")
