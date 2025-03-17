@@ -6,11 +6,9 @@ afterEvaluate {
             bar(MavenPublication) {
                 groupId "com.smarthomesdk"
                 artifactId "smarthomesdk"
-                version "0.2.0"
+                version "0.1.0"
 
-              artifact(tasks.bundleAars) {
-                builtBy tasks.bundleAars
-              }
+                artifact("$buildDir/outputs/aar/android-release.aar")
             }
         }
 
@@ -20,7 +18,7 @@ afterEvaluate {
                 url uri("https://maven.pkg.github.com/HarshaR1642/react-native-smarthome-sdk")
                 credentials {
                     username = "HarshaR1642"
-                    password = "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"
+                    password = "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"
                 }
             }
         }

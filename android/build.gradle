@@ -6,12 +6,19 @@ buildscript {
   repositories {
     google()
     mavenCentral()
+    maven {
+      setUrl("https://jitpack.io")
+      content {
+        includeGroup("com.github.aasitnikov")
+      }
+    }
   }
 
   dependencies {
     classpath "com.android.tools.build:gradle:8.7.3"
     // noinspection DifferentKotlinGradleVersion
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${getExtOrDefault('kotlinVersion')}"
+    classpath 'com.github.aasitnikov:fat-aar-android:1.4.1'
   }
 }
 
@@ -22,6 +29,7 @@ def isNewArchitectureEnabled() {
 
 apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
+apply plugin: 'com.kezong.fat-aar'
 
 if (isNewArchitectureEnabled()) {
   apply plugin: "com.facebook.react"
@@ -48,7 +56,7 @@ android {
       main {
         manifest.srcFile "src/main/AndroidManifestNew.xml"
       }
-
+//
 //      getByName("main") {
 //        jniLibs.srcDirs("libs")
 //      }
@@ -103,19 +111,19 @@ def kotlin_version = getExtOrDefault("kotlinVersion")
 
 dependencies {
   implementation "com.facebook.react:react-android:0.74.4"
-  // implementation fileTree(dir: "libs", include: ['*.aar', '*.jar'])
-  api(project(":lottie-react-native"))
-  api(project(":react-native-async-storage"))
-  api(project(":react-native-picker"))
-  api(project(":react-native-screens"))
-  api(project(":react-native-clipboard"))
-  api(project(":react-native-gesture-handler"))
-  api(project(":react-native-safe-area-context"))
-  api(project(":react-native-svg"))
-  api(project(":react-native-linear-gradient"))
-  api(project(":react-native-reanimated"))
+//   implementation fileTree(dir: "libs", include: ['*.aar', '*.jar'])
+  embed(project(path: ":lottie-react-native", configuration: 'default'))
+  embed(project(path: ":react-native-async-storage", configuration: 'default'))
+  embed(project(path: ":react-native-picker", configuration: 'default'))
+  embed(project(path: ":react-native-screens", configuration: 'default'))
+  embed(project(path: ":react-native-clipboard", configuration: 'default'))
+  embed(project(path: ":react-native-gesture-handler", configuration: 'default'))
+  embed(project(path: ":react-native-safe-area-context", configuration: 'default'))
+  embed(project(path: ":react-native-svg", configuration: 'default'))
+  embed(project(path: ":react-native-linear-gradient", configuration: 'default'))
+  embed(project(path: ":react-native-reanimated", configuration: 'default'))
+  embed "com.airbnb.android:lottie:6.4.0"
 
-  // Hermes (optional)
   if (project.properties["hermesEnabled"] as Boolean) {
     implementation("com.facebook.react:hermes-android")
   } else {
@@ -123,4 +131,4 @@ dependencies {
   }
 }
 
-apply from: "${projectDir}/maven.gradle"
+apply from: "${projectDir}/publish.gradle"
