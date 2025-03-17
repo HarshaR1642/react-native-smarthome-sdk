@@ -1,16 +1,22 @@
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import React from 'react';
 import type { ReactNode } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
-
-// @ts-ignore
 import { SmartHomeSDK } from 'smarthome-sdk';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  mainView: {
+    flex: 1,
+    backgroundColor: '#F3FAFF',
+  },
+});
 
 const getPropertyLevelTokenApi = async ({
   propertyId,
   clientId,
   clientSecret,
-  setAccessToken,
 }: any) => {
   const url = `https://smarthome.qe.rentlycore.com/api/properties/${propertyId}/token`;
 
@@ -56,9 +62,9 @@ const App: () => ReactNode = () => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <View style={{ flex: 1, backgroundColor: '#F3FAFF' }}>
+    <SafeAreaView style={styles.container}>
+      <GestureHandlerRootView style={styles.container}>
+        <View style={styles.mainView}>
           <SmartHomeSDK
             getAccessToken={getAccessToken}
             propertyId={propertyId}
@@ -68,7 +74,5 @@ const App: () => ReactNode = () => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default App;
