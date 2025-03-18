@@ -10502,6 +10502,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-addons-shallow-compare@npm:15.6.3":
+  version: 15.6.3
+  resolution: "react-addons-shallow-compare@npm:15.6.3"
+  dependencies:
+    object-assign: ^4.1.0
+  checksum: e18a527a4eee5e08e5dab5b8eb560d04bbd1b63198cd13f080fdd5c0a5fe59c1cc41a545158989d934e9c25903b0789fc107cbc992094f600e30d1c18bba81e6
+  languageName: node
+  linkType: hard
+
 "react-content-loader@npm:^7.0.0":
   version: 7.0.2
   resolution: "react-content-loader@npm:7.0.2"
@@ -10822,7 +10831,7 @@ __metadata:
     react-native-reanimated: ^3.15.0
     react-native-safe-area-context: ^5.0.0
     react-native-screens: ^4.4.0
-    react-native-snap-carousel: ^3.9.1
+    react-native-snap-carousel: "git+https://github.com/rently-com/react-native-snap-carousel.git#v4.0.0"
     react-native-svg: ^15.5.0
     react-native-svg-transformer: ^1.5.0
     readable-stream: 1.0.33
@@ -10833,6 +10842,19 @@ __metadata:
     util: ~0.10.3
   languageName: unknown
   linkType: soft
+
+"react-native-snap-carousel@git+https://github.com/rently-com/react-native-snap-carousel.git#v4.0.0":
+  version: 4.1.0
+  resolution: "react-native-snap-carousel@https://github.com/rently-com/react-native-snap-carousel.git#commit=e2acb056b94910088c04cde96b42d75ba1753c3b"
+  dependencies:
+    prop-types: ^15.6.1
+    react-addons-shallow-compare: 15.6.3
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 52c5fd7085c84834dbd4f243759cac9cfb2c61383bee8f487efa0f4db8c94a28a7aab9adc81f28af785e6d255f8fd8beea6995eb3d7e1586e7e4bff15d616851
+  languageName: node
+  linkType: hard
 
 "react-native-snap-carousel@npm:^3.9.1":
   version: 3.9.1

@@ -28,8 +28,8 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
     "postinstall": "rn-nodeify --install fs,util,path,tls,stream,buffer,global,process --hack && npx patch-package",
-    "bundle": "react-native bundle --platform android --dev true --entry-file index.js --bundle-output android/src/main/assets/index.android.bundle --assets-dest android/src/main/res/",
-    "release": "cd android && ./gradlew assembleRelease"
+    "bundle": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/src/main/assets/index.android.bundle --assets-dest android/src/main/res/",
+    "release": "yarn bundle && cd android && ./gradlew assembleRelease && ./gradlew publish && cd .."
   },
   "keywords": [
     "react-native",
@@ -67,7 +67,7 @@
     "react-native-reanimated": "^3.15.0",
     "react-native-safe-area-context": "^5.0.0",
     "react-native-screens": "^4.4.0",
-    "react-native-snap-carousel": "^3.9.1",
+    "react-native-snap-carousel": "git+https://github.com/rently-com/react-native-snap-carousel.git#v4.0.0",
     "react-native-svg": "^15.5.0",
     "react-native-svg-transformer": "^1.5.0",
     "readable-stream": "1.0.33",
