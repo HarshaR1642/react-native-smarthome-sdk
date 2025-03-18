@@ -6,7 +6,7 @@ afterEvaluate {
             bar(MavenPublication) {
               groupId "com.smarthomesdk"
               artifactId "smarthomesdk"
-              version "0.6.3"
+              version "0.6.4"
 
               artifact("$buildDir/outputs/aar/android-release.aar")
 
